@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} - Join Sweetlies{% endblock %}
+{% block content %}
+
+{% comment %} Add Candies {% endcomment %}
+<div class="card">
+  <div class="card-content">
+  <span class="card-title">Add Store</span>
+    <form method='POST'>
+      {% csrf_token %}
+      {{ store_form.as_p }}
+      <input type="submit" class="btn" value="Add Store">
+    </form>
+  </div>
+</div>
+
+<script>
+  {% comment %} const selectEl = document.getElementById('id_in_stock');
+  M.FormSelect.init(selectEl); {% endcomment %}
+</script>
+
+{% endblock %}

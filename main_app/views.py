@@ -3,6 +3,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .models import Store
+from .forms import StoreForm
 
 
 # ---------------- STATIC
@@ -33,11 +34,11 @@ def stores_index(request):
 
 def store_detail(request, store_id):
     store = Store.objects.get(id=store_id)
-    all_candy = Candy.objects.filter(seller=store.id)
+    # all_candy = Candy.objects.filter(seller=store.id)
 
     context = {
         'store': store,
-        'all_candy': all_candy,
+        # 'all_candy': all_candy,
     }
     return render(request, 'stores/detail.html', context)
 
@@ -59,6 +60,27 @@ def new_store(request):
         }
         return render(request, 'stores/new.html', context)
 
+
+@login_required
+def delete_store(request, store_id):
+    Store.objects.get(id=store_id).delete()
+    return redirect('user_stores')
+
+
+@login_required
+def edit_store(request, store_id):
+    store = Store.objects.get(id=store_id)
+    if request.method == 'POST':
+        store_form = StoreForm(request.POST, instance=store)
+        if store_form.is_valid():
+            updated_store = store_form.save()
+            return redirect('user_stores')
+    else:
+        store_form = StoreForm(instance=store)
+        context = {
+            'store_form': store_form
+        }
+        return render(request, 'stores/edit.html', context)
 
 
 # ------------------- PROFILE/USER

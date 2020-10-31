@@ -19,4 +19,10 @@
 
 {% comment %} <a class="btn" href="{% url 'add_candy' store.id %}">Add Candy</a> {% endcomment %}
 
+
+<div class="card-action">
+  <a href="{% url 'delete_store' store.id %}" class="btn-small red">Delete</a>
+  <a href="{% url 'edit_store' store.id %}" class="btn-small">Edit</a>
+</div>
+
 {% endblock  %}

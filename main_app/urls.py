@@ -10,6 +10,8 @@ urlpatterns = [
     path('userstores/', views.user_stores, name='user_stores'),
     path('userstores/new/', views.new_store, name='new_store'),
     path('stores/<int:store_id>/', views.store_detail, name='store_detail'),
+    path('stores/<int:store_id>/edit/', views.edit_store, name='edit_store'),
+    path('stores/<int:store_id>/delete/', views.delete_store, name='delete_store'),
     # Candy
     # path('candy/', views.candy_index, name='candy_index'),
     # path('candy/<int:candy_id>/', views.candy_detail, name='candy_detail'),
