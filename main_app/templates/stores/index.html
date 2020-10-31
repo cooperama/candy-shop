@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %} - Our Stores{% endblock %}
+{% block content %}
+
+<h1>Sweetlies' Stores</h1>
+
+{% for store in stores %}
+  <a href="{% url 'store_detail' store.id %}">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ store.store_name }}</span>
+        <p>{{ store.location }}</p>
+        <p>{{ store.description }}</p>
+      </div>
+    </div>
+  </a>
+{% endfor %}
+
+
+
+{% endblock  %}

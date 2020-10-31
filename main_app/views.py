@@ -24,6 +24,41 @@ def user_stores(request):
     return render(request, 'stores/user_index.html', context)
 
 
+def stores_index(request):
+    stores = Store.objects.all()
+    context = {
+        'stores': stores
+    }
+    return render(request, 'stores/index.html', context)
+
+def store_detail(request, store_id):
+    store = Store.objects.get(id=store_id)
+    all_candy = Candy.objects.filter(seller=store.id)
+
+    context = {
+        'store': store,
+        'all_candy': all_candy,
+    }
+    return render(request, 'stores/detail.html', context)
+
+
+
+@login_required
+def new_store(request):
+    if request.method == 'POST':
+        store_form = StoreForm(request.POST)
+        if store_form.is_valid():
+            new_store = store_form.save(commit=False)
+            new_store.user = request.user
+            new_store.save()
+            return redirect('store_detail', new_store.id)
+    else:
+        store_form = StoreForm()
+        context = {
+            'store_form': store_form
+        }
+        return render(request, 'stores/new.html', context)
+
 
 
 # ------------------- PROFILE/USER

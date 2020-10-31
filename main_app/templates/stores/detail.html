@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} - {{ store.store_name }}{% endblock %}
+{% block content %}
+
+<h1>{{ store.store_name }}</h1>
+<p>{{ store.location }}</p>
+<p>{{ store.description }}</p>
+
+{% comment %} {% for candy in all_candy %}
+<a href="{% url 'candy_detail' candy.id %}">
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ candy.name }}</span>
+      <p>{{ candy.description }}</p>
+    </div>
+  </div>
+</a>
+{% endfor %} {% endcomment %}
+
+{% comment %} <a class="btn" href="{% url 'add_candy' store.id %}">Add Candy</a> {% endcomment %}
+
+{% endblock  %}

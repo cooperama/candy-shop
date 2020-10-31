@@ -6,10 +6,10 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     # Stores
-    # path('stores/', views.stores_index, name='stores_index'),
+    path('stores/', views.stores_index, name='stores_index'),
     path('userstores/', views.user_stores, name='user_stores'),
-    # path('userstores/new/', views.new_store, name='new_store'),
-    # path('stores/<int:store_id>/', views.store_detail, name='store_detail'),
+    path('userstores/new/', views.new_store, name='new_store'),
+    path('stores/<int:store_id>/', views.store_detail, name='store_detail'),
     # Candy
     # path('candy/', views.candy_index, name='candy_index'),
     # path('candy/<int:candy_id>/', views.candy_detail, name='candy_detail'),
