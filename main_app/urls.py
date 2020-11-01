@@ -14,12 +14,10 @@ urlpatterns = [
     path('stores/<int:store_id>/delete/', views.delete_store, name='delete_store'),
     # Candy
     path('candy/', views.candy_index, name='candy_index'),
-    # path('stores/<int:store_id>/candy/<int:candy_id>/', views.candy_detail, name='candy_detail'),
     path('candy/<int:candy_id>/', views.candy_detail, name='candy_detail'),
     path('candy/<int:candy_id>/edit/', views.edit_candy, name='edit_candy'),
     path('candy/<int:candy_id>/delete/', views.delete_candy, name='delete_candy'),
-    # path('stores/<int:store_id>/candy/<int:candy_id>/delete/', views.delete_candy, name='delete_candy'),
     path('stores/<int:store_id>/candy/new/', views.add_candy, name='add_candy'),
-    # Seller(user)
+    # Auth
     path('accounts/signup/', views.signup, name='signup'),
 ]

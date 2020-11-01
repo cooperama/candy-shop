@@ -10,6 +10,7 @@ from .forms import StoreForm, CandyForm
 def home(request):
     return render(request, 'home.html')
 
+
 def about(request):
     return render(request, 'about.html')
 
@@ -24,6 +25,7 @@ def user_stores(request):
     }
     return render(request, 'stores/user_index.html', context)
 
+
 @login_required
 def stores_index(request):
     stores = Store.objects.all()
@@ -31,6 +33,7 @@ def stores_index(request):
         'stores': stores
     }
     return render(request, 'stores/index.html', context)
+
 
 @login_required
 def store_detail(request, store_id):
@@ -82,6 +85,11 @@ def edit_store(request, store_id):
         }
         return render(request, 'stores/edit.html', context)
 
+
+
+@login_required
+def assoc_ingredient(request, store_id, ingredient_id):
+    pass
 
 
 # ------------------- CANDY
@@ -141,12 +149,10 @@ def edit_candy(request, candy_id):
 
 
 @login_required
-# def delete_candy(request, store_id, candy_id):
 def delete_candy(request, candy_id):
     candy = Candy.objects.get(id=candy_id)
     store = candy.store.id
     candy.delete()
-    # Candy.objects.get(id=candy_id).delete()
     return redirect('store_detail', store)
 
 

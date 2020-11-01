@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import Candy, Store, Buyer
+from .models import Candy, Store
 
 
 admin.site.register(Candy)
 admin.site.register(Store)
-admin.site.register(Buyer)
