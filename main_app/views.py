@@ -93,14 +93,17 @@ def candy_index(request):
     return render(request, 'candy/index.html', context)
 
 
-def candy_detail(request, candy_id):
+def candy_detail(request,candy_id):
     candy = Candy.objects.get(id=candy_id)
+    store = candy.store.id
     context = {
-        'candy': candy
+        'candy': candy,
+        'store': store
     }
     return render(request, 'candy/detail.html', context)
 
 
+@login_required
 def add_candy(request, store_id):
     store = Store.objects.get(id=store_id)
     if request.method == 'POST':
@@ -118,6 +121,32 @@ def add_candy(request, store_id):
         }
         return render(request, 'candy/new.html', context)
  
+
+@login_required
+def edit_candy(request, candy_id):
+    candy = Candy.objects.get(id=candy_id)
+    if request.method == 'POST':
+        candy_form = CandyForm(request.POST, instance=candy)
+        if candy_form.is_valid():
+            updated_candy = candy_form.save()
+            return redirect('candy_detail', updated_candy.id)
+    else:
+        candy_form = CandyForm()
+        context = {
+            'candy_form': candy_form,
+            'candy': candy
+        }
+        return render(request, 'candy/edit.html', context)
+
+
+@login_required
+# def delete_candy(request, store_id, candy_id):
+def delete_candy(request, candy_id):
+    candy = Candy.objects.get(id=candy_id)
+    store = candy.store.id
+    candy.delete()
+    # candy = Candy.objects.get(id=candy_id).delete()
+    return redirect('store_detail', store)
 
 
 # ------------------- PROFILE/USER

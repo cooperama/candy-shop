@@ -8,7 +8,7 @@
 <div class="card">
   <div class="card-content">
     <span class="card-title">{{ candy.name }}</span>
-    <p>Seller: <a href="{% url 'store_detail' candy.store.id %}">{{ candy.store }}</a></p>
+    <p>Seller: <a href="{% url 'store_detail' candy.store.id %}">{{ candy.store.store_name }}</a></p>
     <p>{{ candy.description }}</p>
     <p>Ingredients: {{ candy.ingredients }}</p>
     <p>Price per 100g: {{ candy.price }}</p>
@@ -18,6 +18,10 @@
   </div>
 </div>
 
+<div class="card-action">
+  <a href="{% url 'delete_candy' candy.id %}" class="btn-small red">Delete</a>
+  <a href="{% url 'edit_candy' candy.id %}" class="btn-small">Edit</a>
+</div>
 
 
 {% endblock %}
