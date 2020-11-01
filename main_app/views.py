@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from .models import Store
-from .forms import StoreForm
+from .models import Store, Candy
+from .forms import StoreForm, CandyForm
 
 
 # ---------------- STATIC
@@ -32,16 +32,16 @@ def stores_index(request):
     }
     return render(request, 'stores/index.html', context)
 
+
 def store_detail(request, store_id):
     store = Store.objects.get(id=store_id)
-    # all_candy = Candy.objects.filter(seller=store.id)
+    all_candy = Candy.objects.filter(store=store.id)
 
     context = {
         'store': store,
-        # 'all_candy': all_candy,
+        'all_candy': all_candy,
     }
     return render(request, 'stores/detail.html', context)
-
 
 
 @login_required
@@ -81,6 +81,43 @@ def edit_store(request, store_id):
             'store_form': store_form
         }
         return render(request, 'stores/edit.html', context)
+
+
+
+# ------------------- CANDY
+def candy_index(request):
+    all_candy = Candy.objects.all()
+    context = {
+        'all_candy': all_candy
+    }
+    return render(request, 'candy/index.html', context)
+
+
+def candy_detail(request, candy_id):
+    candy = Candy.objects.get(id=candy_id)
+    context = {
+        'candy': candy
+    }
+    return render(request, 'candy/detail.html', context)
+
+
+def add_candy(request, store_id):
+    store = Store.objects.get(id=store_id)
+    if request.method == 'POST':
+        candy_form = CandyForm(request.POST)
+        if candy_form.is_valid():
+            new_form = candy_form.save(commit=False)
+            new_form.store_id = store_id
+            new_form.save()
+            return redirect('store_detail', store_id)
+    else:
+        candy_form = CandyForm()
+        context = {
+            'store': store,
+            'candy_form': candy_form
+        }
+        return render(request, 'candy/new.html', context)
+ 
 
 
 # ------------------- PROFILE/USER

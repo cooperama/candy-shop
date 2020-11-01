@@ -6,7 +6,8 @@
 <p>{{ store.location }}</p>
 <p>{{ store.description }}</p>
 
-{% comment %} {% for candy in all_candy %}
+{% if all_candy %}
+{% for candy in all_candy %}
 <a href="{% url 'candy_detail' candy.id %}">
   <div class="card">
     <div class="card-content">
@@ -15,9 +16,12 @@
     </div>
   </div>
 </a>
-{% endfor %} {% endcomment %}
+{% endfor %} 
+{% else %}
+<p>This store has no candy :(</p>
+{% endif %}
 
-{% comment %} <a class="btn" href="{% url 'add_candy' store.id %}">Add Candy</a> {% endcomment %}
+<a class="btn" href="{% url 'add_candy' store.id %}">Add Candy</a>
 
 
 <div class="card-action">

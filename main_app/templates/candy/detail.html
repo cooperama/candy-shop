@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+{% block content %}
+
+<h1>Sweetlies Candy</h1>
+
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ candy.name }}</span>
+    <p>Seller: <a href="{% url 'store_detail' candy.store.id %}">{{ candy.store }}</a></p>
+    <p>{{ candy.description }}</p>
+    <p>Ingredients: {{ candy.ingredients }}</p>
+    <p>Price per 100g: {{ candy.price }}</p>
+    {% if candy.in_stock %}
+      <p>{{ candy.in_stock }}</p>
+    {% endif %}
+  </div>
+</div>
+
+
+
+{% endblock %}

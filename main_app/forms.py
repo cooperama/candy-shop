@@ -1,5 +1,5 @@
 from django import forms
-from .models import Store
+from .models import Store, Candy
 
 class StoreForm(forms.ModelForm):
     class Meta:
@@ -8,4 +8,15 @@ class StoreForm(forms.ModelForm):
             'store_name',
             'location',
             'description'
+        ]
+
+class CandyForm(forms.ModelForm):
+    class Meta:
+        model = Candy
+        fields = [
+            'name',
+            'description',
+            'ingredients',
+            'price',
+            'stock'
         ]
