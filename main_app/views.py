@@ -24,7 +24,7 @@ def user_stores(request):
     }
     return render(request, 'stores/user_index.html', context)
 
-
+@login_required
 def stores_index(request):
     stores = Store.objects.all()
     context = {
@@ -32,7 +32,7 @@ def stores_index(request):
     }
     return render(request, 'stores/index.html', context)
 
-
+@login_required
 def store_detail(request, store_id):
     store = Store.objects.get(id=store_id)
     all_candy = Candy.objects.filter(store=store.id)
@@ -93,6 +93,7 @@ def candy_index(request):
     return render(request, 'candy/index.html', context)
 
 
+@login_required
 def candy_detail(request,candy_id):
     candy = Candy.objects.get(id=candy_id)
     store = candy.store.id
@@ -145,7 +146,7 @@ def delete_candy(request, candy_id):
     candy = Candy.objects.get(id=candy_id)
     store = candy.store.id
     candy.delete()
-    # candy = Candy.objects.get(id=candy_id).delete()
+    # Candy.objects.get(id=candy_id).delete()
     return redirect('store_detail', store)
 
 

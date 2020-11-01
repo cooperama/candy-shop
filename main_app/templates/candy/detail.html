@@ -18,10 +18,11 @@
   </div>
 </div>
 
+{% if request.user == store.user %}
 <div class="card-action">
   <a href="{% url 'delete_candy' candy.id %}" class="btn-small red">Delete</a>
   <a href="{% url 'edit_candy' candy.id %}" class="btn-small">Edit</a>
 </div>
-
+{% endif %}
 
 {% endblock %}

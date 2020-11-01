@@ -21,6 +21,7 @@
 <p>This store has no candy :(</p>
 {% endif %}
 
+{% if request.user == store.user %}
 <a class="btn" href="{% url 'add_candy' store.id %}">Add Candy</a>
 
 
@@ -28,5 +29,7 @@
   <a href="{% url 'delete_store' store.id %}" class="btn-small red">Delete</a>
   <a href="{% url 'edit_store' store.id %}" class="btn-small">Edit</a>
 </div>
+
+{% endif %}
 
 {% endblock  %}
