@@ -6,12 +6,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <title>Sweetlies{% block title %}{% endblock  %}</title>
 </head>
 <body>
   <header class="navbar-fixed">
+    {% comment %} <ul id="dropdown1" class="dropdown-content">
+      <li><a href="{% url 'candy_index' %}">Our Candy</a></li>
+      <li><a href="{% url 'stores_index' %}">Our Stores</a></li>
+    </ul> {% endcomment %}
     <nav>
+      <div class="nav-wrapper">
+        <ul>
+          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Sweetlies</a></li>
+        </ul>
+        <ul class="right">
+          {% if user.is_authenticated %}
+          {% comment %} <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Shop<i class="material-icons right">shopping_basket</i></a></li>  {% endcomment %}
+          <li><a href="{% url 'candy_index' %}">Our Candy</a></li>
+          <li><a href="{% url 'stores_index' %}">Our Stores</a></li>
+          <li><a href="{% url 'user_stores' %}">My Sweets</a></li>
+          <li><a href="{% url 'buyers_index' %}">Our Associates</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'logout' %}">Log Out</a></li>
+          {% else %}
+          <li><a href="{% url 'login' %}">Log In</a></li>
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav> 
+
+
+    {% comment %} <nav>
       <div class="nav-wrapper">
         <ul>
           <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Sweetlies</a></li>
@@ -22,6 +50,7 @@
           {% if user.is_authenticated %}
           <li><a href="{% url 'candy_index' %}">Our Candy</a></li>
           <li><a href="{% url 'stores_index' %}">Our Stores</a></li>
+          <li><a href="{% url 'buyers_index' %}">Our Associates</a></li>
           <li><a href="{% url 'user_stores' %}">My Sweets</a></li>
           <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
@@ -30,7 +59,7 @@
           {% endif %}
         </ul>
       </div>
-    </nav>
+    </nav> {% endcomment %}
   </header>
   <main class="container">
     {% block content %}
@@ -39,5 +68,12 @@
   <footer class="page-footer">
     <div class="right">All Rights Reserved, &copy; 2020 Sweetlies &nbsp;</div>
   </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.dropdown-trigger');
+      var instances = M.Dropdown.init(elems, options);
+    });
+  </script>
 </body>
 </html>

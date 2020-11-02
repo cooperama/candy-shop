@@ -18,6 +18,11 @@ urlpatterns = [
     path('candy/<int:candy_id>/edit/', views.edit_candy, name='edit_candy'),
     path('candy/<int:candy_id>/delete/', views.delete_candy, name='delete_candy'),
     path('stores/<int:store_id>/candy/new/', views.add_candy, name='add_candy'),
+    # Buyer
+    path('buyers/', views.buyers_index, name='buyers_index'),
+    path('buyers/new/', views.add_buyer, name='add_buyer'),
+    path('stores/<int:store_id>/buyers/<int:buyer_id>/', views.assoc_buyer, name='assoc_buyer'),
+    path('stores/<int:store_id>/buyers/<int:buyer_id>/delete/', views.delete_buyer, name='delete_buyer'),
     # Auth
     path('accounts/signup/', views.signup, name='signup'),
 ]

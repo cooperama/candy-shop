@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from .models import Store, Candy
-from .forms import StoreForm, CandyForm
+from .models import Store, Candy, Buyer
+from .forms import StoreForm, CandyForm, BuyerForm
 
 
 # ---------------- STATIC
@@ -39,10 +39,12 @@ def stores_index(request):
 def store_detail(request, store_id):
     store = Store.objects.get(id=store_id)
     all_candy = Candy.objects.filter(store=store.id)
+    not_buyers = Buyer.objects.exclude(id__in=store.buyers.all().values_list('id'))
 
     context = {
         'store': store,
         'all_candy': all_candy,
+        'not_buyers': not_buyers
     }
     return render(request, 'stores/detail.html', context)
 
@@ -77,7 +79,7 @@ def edit_store(request, store_id):
         store_form = StoreForm(request.POST, instance=store)
         if store_form.is_valid():
             updated_store = store_form.save()
-            return redirect('user_stores')
+            return redirect('store_detail', store_id)
     else:
         store_form = StoreForm(instance=store)
         context = {
@@ -86,10 +88,42 @@ def edit_store(request, store_id):
         return render(request, 'stores/edit.html', context)
 
 
+# ------------------- CANDY
+def buyers_index(request):
+    buyers = Buyer.objects.all()
+    context = {
+        'buyers': buyers
+    }
+    return render(request, 'buyers/index.html', context)
+
 
 @login_required
-def assoc_ingredient(request, store_id, ingredient_id):
-    pass
+def add_buyer(request):
+    if request.method == "POST":
+        buyer_form = BuyerForm(request.POST)
+        if buyer_form.is_valid():
+            buyer_form.save()
+            return redirect('buyers_index')
+    else:
+        buyer_form = BuyerForm()
+        context = {
+            'buyer_form': buyer_form
+        }
+        return render(request, 'buyers/new.html', context)
+
+
+@login_required
+def assoc_buyer(request, store_id, buyer_id):
+    Store.objects.get(id=store_id).buyers.add(Buyer.objects.get(id=buyer_id))
+    return redirect('store_detail', store_id)
+
+
+@login_required
+def delete_buyer(request, store_id, buyer_id):
+    store = Store.objects.get(id=store_id)
+    buyer = Buyer.objects.get(id=buyer_id)
+    store.buyers.remove(buyer)
+    return redirect('store_detail', store_id)
 
 
 # ------------------- CANDY

@@ -12,3 +12,7 @@ footer {
   padding-top: 0;
   text-align: right;
 }
+
+nav .brand-logo {
+  font-family: 'Pacifico', cursive;
+}

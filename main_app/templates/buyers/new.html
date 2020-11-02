@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
-{% block title %} - {{ store.store_name }}{% endblock %}
+{% block title %} - Associates{% endblock %}
 {% block content %}
 
 <div class="card">
   <div class="card-content">
-  <span class="card-title">Add Candy</span>
+  <span class="card-title">Add Buyer</span>
     <form method='POST'>
       {% csrf_token %}
-      {{ candy_form.as_p }}
-      <input type="submit" class="btn" value="Add Candy">
+      {{ buyer_form.as_p }}
+      <input type="submit" class="btn" value="Add Buyer">
     </form>
   </div>
 </div>

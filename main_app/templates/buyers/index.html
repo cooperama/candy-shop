@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %} - Our Associates{% endblock %}
+{% block content %}
+
+<h1>Sweetlies' Associates</h1>
+
+<p>Sweetlies proudly supplies stores across the globe with candies and sweets made from the highest quality ingredients. Our mission is to make vegan and cruelty-free food available to people all over the world, and it is our pleasure to include these companies on our path to a kinder and more compassionate future.</p>
+
+
+<ul>
+  {% for buyer in buyers %}
+  <li><strong>{{ buyer.name }}</strong> - {{ buyer.location }}</li>
+  {% endfor %}
+</ul>
+
+<a class="btn" href="{% url 'add_buyer' %}">Join Sweetlies</a>
+{% endblock %}

@@ -11,7 +11,7 @@
     <p>Seller: <a href="{% url 'store_detail' candy.store.id %}">{{ candy.store.store_name }}</a></p>
     <p>{{ candy.description }}</p>
     <p>Ingredients: {{ candy.ingredients }}</p>
-    <p>Price per 100g: {{ candy.price }}</p>
+    <p>Price per 100g: ${{ candy.price }}</p>
     {% if candy.in_stock %}
       <p>{{ candy.in_stock }}</p>
     {% endif %}
