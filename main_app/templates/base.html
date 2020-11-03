@@ -7,10 +7,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <title>Sweetlies{% block title %}{% endblock  %}</title>
 </head>
-<body class="pink lighten-4">
+<body>
   <header class="navbar-fixed">
     <nav>
       <div class="nav-wrapper pink darken-2">
@@ -21,7 +22,7 @@
           {% if user.is_authenticated %}
           <li><a href="{% url 'candy_index' %}">Our Candy</a></li>
           <li><a href="{% url 'stores_index' %}">Our Stores</a></li>
-          <li><a href="{% url 'user_stores' %}">My Sweets</a></li>
+          <li><a href="{% url 'user_stores' %}">My Sweetlies</a></li>
           <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
           <li><a href="{% url 'login' %}">Log In</a></li>

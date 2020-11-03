@@ -4,17 +4,19 @@
 
 <h1>Sweetlies' Stores</h1>
 
-{% for store in stores %}
-  <a href="{% url 'store_detail' store.id %}">
-    <div class="card">
-      <div class="card-content">
-        <span class="card-title">{{ store.store_name }}</span>
-        <p>{{ store.location }}</p>
-        <p>{{ store.description }}</p>
+<div class="row">
+  {% for store in stores %}
+  <div class="col s4">
+      <div class="card pink lighten-2">
+        <div class="card-content">
+          <a href="{% url 'store_detail' store.id %}"><span class="card-title">{{ store.store_name }}</span></a>
+          <p>{{ store.location }}</p>
+          <p>{{ store.description }}</p>
+        </div>
       </div>
-    </div>
-  </a>
-{% endfor %}
+  </div>
+  {% endfor %}
+</div>
 
 
 

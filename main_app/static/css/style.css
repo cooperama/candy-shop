@@ -2,11 +2,73 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-color: #F9BDBB;
 }
 
 main {
   flex: 1 0 auto;
 }
+
+a {
+  color: #ede7f6;
+  font-family: 'Itim', cursive;
+}
+
+.row a:hover {
+  color: #880e4f;
+}
+
+h1 {
+  color: #f06292;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+}
+
+h1, 
+nav .brand-logo {
+  font-family: 'Pacifico', cursive;
+}
+
+.photo-credit {
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+}
+
+.live-sweetly {
+  display: inline-block;
+  width: 200px;
+  position: absolute;
+  right: 10%;
+  top: 25%;
+}
+
+.live-sweetly h1 {
+  color: white;
+}
+
+
+.page-footer {
+  padding-top: 0;
+  text-align: right;
+  padding: 0 20px;
+  color: #fff;
+  width: 100%;
+}
+
+.home-footer {
+  position: absolute;
+  bottom: 0;
+}
+
+footer li {
+  display: inline-block;
+  padding-left: 20px;
+}
+
+/* Home & About pages */
 
 .home-page {
   height: 100vh;
@@ -37,56 +99,14 @@ main {
   background-position: center;
 }
 
-footer {
-  text-align: right;
-  padding: 0 20px;
-}
-
-.page-footer {
-  padding-top: 0;
-  color: #fff;
-  background-color: #ee6e73;
+.content-div {
+  margin-top: 30px;
   position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-footer li {
-  display: inline-block;
-  padding-left: 20px;
+  left: 100px;
+  width: 80%;
 }
 
-a {
-  color: #26c6da;
-  /* cyan lighten-2 */
-}
-
-h1 {
-  color: #f06292;
-}
-
-h1, 
-nav .brand-logo {
-  font-family: 'Pacifico', cursive;
-}
-
-.photo-credit {
-  display: inline-block;
-  position: absolute;
-  bottom: 0;
-}
-
-.live-sweetly {
-  display: inline-block;
-  width: 200px;
-  position: absolute;
-  right: 10%;
-  top: 25%;
-}
-
-.live-sweetly h1 {
-  color: white;
-}
-
+/* Log in & Sign up pages */
 .form-card {
   padding: 30px;
   width: 400px;
@@ -94,6 +114,31 @@ nav .brand-logo {
 
 .form-card-signup {
   margin-left: 100px;
+}
+
+.form-card-signup h1 {
+  margin-bottom: 0;
+}
+
+.form-card form {
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.signup-form .helptext {
+  display: none;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding-left: 10px !important;
+  width: 290px !important;
+  background: white !important;
+  border-radius: 5px !important;
+}
+
+label {
+  color: black;
 }
 
 .img-signup,
@@ -112,6 +157,22 @@ nav .brand-logo {
 }
 
 .login-div {
-  margin-top: 100px;
+  margin-top: 60px;
+}
+
+input[type='submit'] {
+  width: 100%;
+}
+
+
+/* Candy Pages */
+
+.candy-img {
+  width: 100%;
+  box-shadow: 0 0 2px black;
+}
+
+.candy-div p {
+  color: black;
 }
 

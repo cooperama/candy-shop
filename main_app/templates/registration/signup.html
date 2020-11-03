@@ -15,7 +15,7 @@
   <div class="col s6">
     <div class="form-card form-card-signup">
     <h1 class="center-align">Sign Up</h1>
-      <form action="{% url 'signup' %}" method='post'>
+      <form class="signup-form" action="{% url 'signup' %}" method='post'>
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" class="btn" value="signup">

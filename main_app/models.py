@@ -29,7 +29,8 @@ class Candy(models.Model):
     stock = models.IntegerField(default=50)
 
     # Deleting the last candy belonging to a store deletes the store as well :(
-    store = models.ForeignKey(Store, on_delete=models.CASCADE)
+    store = models.ForeignKey(Store, null=True, on_delete=models.SET_NULL)
+    # store = models.ForeignKey(Store, on_delete=models.CASCADE)
 
 
     def __str__(self):
