@@ -6,12 +6,15 @@
 
 <p>Sweetlies proudly supplies stores across the globe with candies and sweets made from the highest quality ingredients. Our mission is to make vegan and cruelty-free food available to people all over the world, and it is our pleasure to include these companies on our path to a kinder and more compassionate future.</p>
 
-
-<ul>
-  {% for buyer in buyers %}
-  <li><strong>{{ buyer.name }}</strong> - {{ buyer.location }}</li>
-  {% endfor %}
-</ul>
+<div class="row">
+  <div class="col s6">
+    <ul class="collection">
+      {% for buyer in buyers %}
+      <li class="collection-item"><strong>{{ buyer.name }}</strong> - {{ buyer.location }}</li>
+      {% endfor %}
+    </ul>  
+  </div>
+</div>
 
 <a class="btn" href="{% url 'add_buyer' %}">Join Sweetlies</a>
 {% endblock %}

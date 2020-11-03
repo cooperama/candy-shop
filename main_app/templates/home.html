@@ -1,12 +1,51 @@
-{% extends 'base.html' %}
 {% load static %}
-{% block title %} - Home {% endblock %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Sweetlies</title>
+</head>
+<body>
+<div class="home-page">
+  <header class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper pink darken-2">
+        <ul>
+          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Sweetlies</a></li>
+        </ul>
+        <ul class="right">
+          <li><a href="{% url 'login' %}">Log In</a></li>
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+        </ul>
+      </div>
+    </nav> 
+  </header>
+  <div class="live-sweetly">
+    <h1>Live Sweetly</h1>
+    <p class="white-text">All sweet, no sour.</p>
+  </div>
 
-<h1>Sweetlies</h1>
-
-<img class="candy-img" src="{% static 'images/jamie-albright-AHF_ZktTL6Q-unsplash (1).jpg' %}" alt="candy">
 
 
-<span>Photo by <a href="https://unsplash.com/@dcjamie_1202?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Jamie Albright</a> on <a href="https://unsplash.com/s/photos/candy?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
-{% endblock  %}
+<span class="photo-credit">Photo by <a href="https://unsplash.com/@dcjamie_1202?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Jamie Albright</a> on <a href="https://unsplash.com/s/photos/candy?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+  <footer class="page-footer pink darken-2">
+    <div>
+    {% comment %} <div class="nav-wrapper"> {% endcomment %}
+      <ul class="left">All Rights Reserved, &copy; 2020 Sweetlies &nbsp;</ul>
+      <ul class="right">
+        <li><a class="white-text" href="{% url 'about' %}">About</a></li>
+        <li><a class="white-text" href="{% url 'buyers_index' %}">Our Associates</a></li>
+      </ul>
+    </div>
+  </footer>
+</div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

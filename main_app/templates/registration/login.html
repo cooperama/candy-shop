@@ -1,13 +1,25 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
-<h1>Log In</h1>
 
-<form action="{% url 'login' %}" method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" class="btn" value="login">
-  <input type="hidden" name="next" value="{{ next }}">
-</form>
+<div class="row login-div">
+  <div class="col s6">
+    <div class="form-card">
+    <h1 class="center-align">Log In</h1>
+      <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn" value="login">
+        <input type="hidden" name="next" value="{{ next }}">
+      </form>
+    </div>
+  </div>
+  <div class="col s6 img-login">
+    <img src="{% static './images/dee-copper-and-wild-4b9Talfia6c-unsplash.jpg' %}" alt="">
+    <span>Photo by <a href="https://unsplash.com/@copperandwild?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Dee @ Copper and Wild</a> on <a href="https://unsplash.com/s/photos/candy?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+  </div>
+</div>
+
 
 {% endblock %}

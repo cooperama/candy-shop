@@ -10,25 +10,18 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <title>Sweetlies{% block title %}{% endblock  %}</title>
 </head>
-<body>
+<body class="pink lighten-4">
   <header class="navbar-fixed">
-    {% comment %} <ul id="dropdown1" class="dropdown-content">
-      <li><a href="{% url 'candy_index' %}">Our Candy</a></li>
-      <li><a href="{% url 'stores_index' %}">Our Stores</a></li>
-    </ul> {% endcomment %}
     <nav>
-      <div class="nav-wrapper">
+      <div class="nav-wrapper pink darken-2">
         <ul>
           <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Sweetlies</a></li>
         </ul>
         <ul class="right">
           {% if user.is_authenticated %}
-          {% comment %} <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Shop<i class="material-icons right">shopping_basket</i></a></li>  {% endcomment %}
           <li><a href="{% url 'candy_index' %}">Our Candy</a></li>
           <li><a href="{% url 'stores_index' %}">Our Stores</a></li>
           <li><a href="{% url 'user_stores' %}">My Sweets</a></li>
-          <li><a href="{% url 'buyers_index' %}">Our Associates</a></li>
-          <li><a href="{% url 'about' %}">About</a></li>
           <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
           <li><a href="{% url 'login' %}">Log In</a></li>
@@ -37,43 +30,20 @@
         </ul>
       </div>
     </nav> 
-
-
-    {% comment %} <nav>
-      <div class="nav-wrapper">
-        <ul>
-          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Sweetlies</a></li>
-        </ul>
-        <ul class="right">
-          <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'about' %}">About</a></li>
-          {% if user.is_authenticated %}
-          <li><a href="{% url 'candy_index' %}">Our Candy</a></li>
-          <li><a href="{% url 'stores_index' %}">Our Stores</a></li>
-          <li><a href="{% url 'buyers_index' %}">Our Associates</a></li>
-          <li><a href="{% url 'user_stores' %}">My Sweets</a></li>
-          <li><a href="{% url 'logout' %}">Log Out</a></li>
-          {% else %}
-          <li><a href="{% url 'login' %}">Log In</a></li>
-          <li><a href="{% url 'signup' %}">Sign Up</a></li>
-          {% endif %}
-        </ul>
-      </div>
-    </nav> {% endcomment %}
   </header>
   <main class="container">
     {% block content %}
     {% endblock %}
   </main>
-  <footer class="page-footer">
-    <div class="right">All Rights Reserved, &copy; 2020 Sweetlies &nbsp;</div>
+  <footer class="page-footer pink darken-2">
+    <div class="nav-wrapper">
+      <ul class="left">All Rights Reserved, &copy; 2020 Sweetlies &nbsp;</ul>
+      <ul class="right">
+        <li><a class="white-text" href="{% url 'about' %}">About</a></li>
+        <li><a class="white-text" href="{% url 'buyers_index' %}">Our Associates</a></li>
+      </ul>
+    </div>
   </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.dropdown-trigger');
-      var instances = M.Dropdown.init(elems, options);
-    });
-  </script>
 </body>
 </html>
