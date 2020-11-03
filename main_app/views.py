@@ -91,7 +91,7 @@ def edit_store(request, store_id):
         return render(request, 'stores/edit.html', context)
 
 
-# ------------------- CANDY
+# ------------------- BUYER
 def buyers_index(request):
     buyers = Buyer.objects.all()
     context = {
@@ -139,9 +139,9 @@ def candy_index(request):
 
 
 @login_required
-def candy_detail(request,candy_id):
+def candy_detail(request, candy_id):
     candy = Candy.objects.get(id=candy_id)
-    store = candy.store.id
+    store = Store.objects.filter(id=candy.store.id)[0]
     context = {
         'candy': candy,
         'store': store
@@ -177,7 +177,7 @@ def edit_candy(request, candy_id):
             updated_candy = candy_form.save()
             return redirect('candy_detail', updated_candy.id)
     else:
-        candy_form = CandyForm()
+        candy_form = CandyForm(instance=candy)
         context = {
             'candy_form': candy_form,
             'candy': candy

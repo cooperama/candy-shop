@@ -23,7 +23,7 @@
             <div class="col s12">
               <div class="row index-div">
                 <div class="col">
-                  <a href="{% url 'candy_detail' candy.id %}">
+                  <a class="candy-link" href="{% url 'candy_detail' candy.id %}">
                     <span class="card-title truncate">{{ candy.name }}</span>
                   </a>
                 </div>
@@ -62,7 +62,8 @@
         {% for buyer in store.buyers.all %}
         <div class="card">
           <div class="card-content">
-            <span class="card-title">{{ buyer.name }} - {{ buyer.location }}</span>
+            <span class="card-title pink-text lighten-1-text">{{ buyer.name }}</span>
+            <p>{{ buyer.location }}</p>
             {% if store.user == request.user %}
               <a href="{% url 'delete_buyer' store.id buyer.id %}" class="btn">Remove Associate</a>
             {% endif %}
@@ -79,7 +80,7 @@
     {% for buyer in not_buyers %}
     <div class="card">
       <div class="card-content">
-        <span class="card-title">{{ buyer.name }}</span>
+        <span class="card-title pink-text lighten-1-text">{{ buyer.name }}</span>
         <p>{{ buyer.location }}</p>
         {% if store.user == request.user %}
           <a href="{% url 'assoc_buyer' store.id buyer.id %}" class="btn">Add Associate</a>

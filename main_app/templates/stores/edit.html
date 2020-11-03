@@ -2,21 +2,15 @@
 {% block title %}{% endblock %}
 {% block content %}
 
-{% comment %} Add Candies {% endcomment %}
-<div class="card">
-  <div class="card-content">
-  <span class="card-title">Edit Store</span>
-    <form method='POST'>
-      {% csrf_token %}
-      {{ store_form.as_p }}
-      <input type="submit" class="btn" value="Edit Store">
-    </form>
-  </div>
+
+<h1>Edit Store</h1>
+<div class="edit-form">
+  <form method='POST'>
+    {% csrf_token %}
+    {{ store_form.as_p }}
+    <input type="submit" class="btn" value="Edit Store">
+  </form>
 </div>
 
-<script>
-  {% comment %} const selectEl = document.getElementById('id_in_stock');
-  M.FormSelect.init(selectEl); {% endcomment %}
-</script>
 
 {% endblock %}

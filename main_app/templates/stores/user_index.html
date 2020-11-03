@@ -7,9 +7,9 @@
   <div class="col s6">
     <h2>My Stores</h2>
     {% for store in stores %}
-        <div class="card">
-          <div class="card-content pink-text lighten-2-text">
-            <a class="store-link pink-text lighten-2-text" href="{% url 'store_detail' store.id %}"><span class="card-title">{{ store.store_name }}</span></a>
+        <div class="card pink lighten-2">
+          <div class="card-content white-text">
+            <a class="store-link" href="{% url 'store_detail' store.id %}"><span class="card-title">{{ store.store_name }}</span></a>
             <p>{{ store.location }}</p>
             <p>{{ store.description }}</p>
           </div>

@@ -5,24 +5,31 @@
 <h1>Sweetlies Candy</h1>
 
 
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">{{ candy.name }}</span>
-    <p>Seller: <a href="{% url 'store_detail' candy.store.id %}">{{ candy.store.store_name }}</a></p>
-    <p>{{ candy.description }}</p>
-    <p>Ingredients: {{ candy.ingredients }}</p>
-    <p>Price per 100g: ${{ candy.price }}</p>
-    {% if candy.in_stock %}
-      <p>{{ candy.in_stock }}</p>
-    {% endif %}
+<div class="row">
+  <div class="col s6">
+    <div class="card pink lighten-2">
+      <div class="card-content white-text">
+        <span class="card-title">{{ candy.name }}</span>
+        <p>Seller: <a class="seller-link" href="{% url 'store_detail' candy.store.id %}">{{ candy.store.store_name }}</a></p>
+        <p>{{ candy.description }}</p>
+        <p>Ingredients: {{ candy.ingredients }}</p>
+        <p>Price per 100g: ${{ candy.price }}</p>
+        {% if candy.in_stock %}
+          <p>{{ candy.in_stock }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="col s6">
+    <img class="candy-img" src="https://loremflickr.com/320/240/chocolate/" alt="{{ candy.name }}">
   </div>
 </div>
 
 {% if request.user == store.user %}
-<div class="card-action">
-  <a href="{% url 'delete_candy' candy.id %}" class="btn-small red">Delete</a>
-  <a href="{% url 'edit_candy' candy.id %}" class="btn-small">Edit</a>
-</div>
+  <div class="card-action">
+    <a href="{% url 'delete_candy' candy.id %}" class="btn-small red">Delete Candy</a>
+    <a href="{% url 'edit_candy' candy.id %}" class="btn-small">Edit Candy</a>
+  </div>
 {% endif %}
 
 {% endblock %}

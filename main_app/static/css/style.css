@@ -9,13 +9,20 @@ main {
   flex: 1 0 auto;
 }
 
-a {
+a,
+span {
   color: #ede7f6;
   font-family: 'Itim', sans-serif;
 }
 
+.seller-link:hover,
+.candy-link:hover,
 .index-div a:hover {
-  color: #880e4f;
+  color: #880e4f !important;
+}
+
+.store-link {
+  border-bottom: 5px solid #4db6ac;
 }
 
 .store-link:hover {
@@ -23,8 +30,9 @@ a {
 }
 
 h1, 
-h2 {
-  color: #f06292;
+h2,
+h5 {
+  color: #c2185b;
   border-bottom: 5px solid #4db6ac;
 }
 
@@ -64,6 +72,7 @@ nav .brand-logo {
   padding: 0 20px;
   color: #fff;
   width: 100%;
+  margin-top: 20px;
 }
 
 .home-footer {
@@ -137,12 +146,34 @@ footer li {
   display: none;
 }
 
-input[type="text"],
+.form-card input[type="text"],
 input[type="password"] {
   padding-left: 10px !important;
   width: 290px !important;
   background: white !important;
   border-radius: 5px !important;
+}
+
+.edit-form {
+  width: 500px;
+}
+
+textarea,
+input[type="text"],
+input[type="number"] {
+  background: white !important;
+  border-radius: 5px !important;
+  padding: 10px 0 0 10px !important;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 490px !important;
+  height: 30px !important;
+}
+
+form p {
+  margin: 0;
 }
 
 label {
