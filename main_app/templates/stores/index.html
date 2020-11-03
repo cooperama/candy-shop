@@ -8,7 +8,7 @@
   {% for store in stores %}
   <div class="col s4">
       <div class="card pink lighten-2">
-        <div class="card-content">
+        <div class="card-content index-div">
           <a href="{% url 'store_detail' store.id %}"><span class="card-title">{{ store.store_name }}</span></a>
           <p>{{ store.location }}</p>
           <p>{{ store.description }}</p>

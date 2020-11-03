@@ -11,15 +11,21 @@ main {
 
 a {
   color: #ede7f6;
-  font-family: 'Itim', cursive;
+  font-family: 'Itim', sans-serif;
 }
 
-.row a:hover {
+.index-div a:hover {
   color: #880e4f;
 }
 
-h1 {
+.store-link:hover {
+  color: #f8bbd0 !important;
+}
+
+h1, 
+h2 {
   color: #f06292;
+  border-bottom: 5px solid #4db6ac;
 }
 
 .ellipsis {
@@ -27,6 +33,7 @@ h1 {
 }
 
 h1, 
+h2,
 nav .brand-logo {
   font-family: 'Pacifico', cursive;
 }
@@ -47,6 +54,7 @@ nav .brand-logo {
 
 .live-sweetly h1 {
   color: white;
+  border: none;
 }
 
 

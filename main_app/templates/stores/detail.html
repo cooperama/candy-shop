@@ -3,27 +3,57 @@
 {% block content %}
 
 <h1>{{ store.store_name }}</h1>
-<p>{{ store.location }}</p>
+<p>{{ store.user }} - {{ store.location }}</p>
 <p>{{ store.description }}</p>
 
 {% if all_candy %}
+<div class="row">
   {% for candy in all_candy %}
-  <a href="{% url 'candy_detail' candy.id %}">
-    <div class="card">
-      <div class="card-content">
-        <span class="card-title">{{ candy.name }}</span>
-        <p>{{ candy.description }}</p>
+   <div class="col s4">
+      <div class="card pink lighten-2">
+        <div class="card-content">
+          <div class="row">
+            <div class="col">
+              <a href="{% url 'candy_detail' candy.id %}">
+                <img class="candy-img" src="https://loremflickr.com/320/240/chocolate/" alt="{{ candy.name }}">
+              </a>
+            </div>
+          </div>
+          <div class="row candy-div">
+            <div class="col s12">
+              <div class="row index-div">
+                <div class="col">
+                  <a href="{% url 'candy_detail' candy.id %}">
+                    <span class="card-title truncate">{{ candy.name }}</span>
+                  </a>
+                </div>
+              </div>
+              <div class="row index-div">
+                <div class="col s8">
+                  <p>Store: <br /><a href="{% url 'store_detail' candy.store.id %}">{{ candy.store.store_name }}</a></p>
+                  <p>{{ candy.description }}</p>
+                </div>
+                <div class="col s4 center-align">
+                  <p>Price per 100g:</p>
+                  <p>${{ candy.price }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </a>
-  {% endfor %} 
+  {% endfor %}
+</div>
 {% else %}
   <p>This store has no candy :(</p>
 {% endif %}
 
-<div class="card-action">
-  <a class="btn" href="{% url 'add_candy' store.id %}">Add Candy</a>
-</div>
+{% if store.user == request.user %}
+  <div class="card-action">
+    <a class="btn" href="{% url 'add_candy' store.id %}">Add Candy</a>
+  </div>
+{% endif %}
 
 <div class="row">
   <div class="col s6">
@@ -33,10 +63,9 @@
         <div class="card">
           <div class="card-content">
             <span class="card-title">{{ buyer.name }} - {{ buyer.location }}</span>
-            <form action="{% url 'delete_buyer' store.id buyer.id %}" method="POST">
-              {% csrf_token %}
-              <input type="submit" class="btn" value="Remove Associate">
-            </form>
+            {% if store.user == request.user %}
+              <a href="{% url 'delete_buyer' store.id buyer.id %}" class="btn">Remove Associate</a>
+            {% endif %}
           </div>
         </div>
         {% endfor %}
@@ -52,15 +81,19 @@
       <div class="card-content">
         <span class="card-title">{{ buyer.name }}</span>
         <p>{{ buyer.location }}</p>
-        <a href="{% url 'assoc_buyer' store.id buyer.id %}" class="btn">Add</a>
+        {% if store.user == request.user %}
+          <a href="{% url 'assoc_buyer' store.id buyer.id %}" class="btn">Add Associate</a>
+        {% endif %}
       </div>
     </div>
     {% endfor %}
     {% endif %}
   </div>
 </div>
-<div class="card-action">
-  <a href="{% url 'delete_store' store.id %}" class="btn-small red">Delete Store</a>
-  <a href="{% url 'edit_store' store.id %}" class="btn-small">Edit Store</a>
-</div>
+{% if store.user == request.user %}
+  <div class="card-action right">
+    <a href="{% url 'delete_store' store.id %}" class="btn-small red">Delete Store</a>
+    <a href="{% url 'edit_store' store.id %}" class="btn-small">Edit Store</a>
+  </div>
+{% endif %}
 {% endblock  %}

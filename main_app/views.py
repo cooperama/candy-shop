@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Store, Candy, Buyer
 from .forms import StoreForm, CandyForm, BuyerForm
@@ -20,8 +21,10 @@ def about(request):
 @login_required
 def user_stores(request):
     stores = Store.objects.filter(user=request.user)
+    found_user = User.objects.get(id=request.user.id)
     context = {
-        'stores': stores
+        'stores': stores,
+        'found_user': found_user
     }
     return render(request, 'stores/user_index.html', context)
 

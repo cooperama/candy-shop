@@ -18,14 +18,14 @@
           </div>
           <div class="row candy-div">
             <div class="col s12">
-              <div class="row">
+              <div class="row index-div">
                 <div class="col">
                   <a href="{% url 'candy_detail' candy.id %}">
                     <span class="card-title truncate">{{ candy.name }}</span>
                   </a>
                 </div>
               </div>
-              <div class="row">
+              <div class="row index-div">
                 <div class="col s8">
                   <p>Store: <br /><a href="{% url 'store_detail' candy.store.id %}">{{ candy.store.store_name }}</a></p>
                   <p>{{ candy.description }}</p>
